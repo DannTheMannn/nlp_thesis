@@ -1,0 +1,121 @@
+\chapter{Methodology}
+
+
+
+\section{Embeddings/Token}
+
+
+
+\section{The Transformer}
+The Transformer architecture is a powerful tool in natural language processing (NLP) tasks, particularly adept at sequence-to-sequence problems like machine translation. It relies on an encoder-decoder structure to process and generate textual data.
+The encoder processes the input sequence and generates a contextualized representation for each token.
+This encoded representation is passed to the decoder.
+The decoder starts generating the output sequence one token at a time.
+At each step, it uses masked self-attention to consider previously generated tokens and encoder-decoder attention to refer back to the encoded source sentence.
+Based on this combined information, the decoder predicts the next most likely token in the output sequence.
+
+\subsection{Encoder}
+
+The encoder takes an input sequence, like a sentence, and breaks it down into individual tokens (words or sub-words).
+Each token is mapped to an embedding vector, capturing its semantic meaning.
+The encoder then uses multiple encoder blocks to process the sequence.
+Each encoder block contains two sub-layers:
+Self-attention mechanism: This allows the model to understand the relationships between different words in the input sequence. It analyzes each token and assigns weights to other tokens based on their relevance. This creates a contextually rich representation for each token.
+Feed-forward neural network: This further refines the encoded representation by applying non-linear transformations.
+
+\subsection{Decoder}
+The decoder's role is to generate the output sequence based on the encoded representation from the encoder.
+It also uses multiple decoder blocks, similar to the encoder.
+Each decoder block has two additional sub-layers compared to the encoder block:
+Masked self-attention: Similar to the self-attention in the encoder, but it only attends to the previously generated tokens in the output sequence to avoid predicting future words based on information not yet generated.
+Encoder-decoder attention: This mechanism allows the decoder to attend to the encoded representation from the encoder, effectively looking back at the source sentence for context when generating the target sequence.
+Overall Process:
+
+
+
+
+
+\section{BERT}
+BERT (Bidirectional Encoder Representations from Transformers) is a  pre-trained language representation model introduced by Devlin et al. in 2019 (ref). Its based on the Transformer architecture from\dots but instead of using in contrast to using both, an encoder and a decoder as in the original transformer, BERT only utilizes the encoder component.
+why?
+
+
+At that time, it achieved state-of-the-art results on many
+common NLP tasks such as sentiment analysis, text prediction, or named entity recognition.
+
+BERT introduces two pre-training
+objectives, the masked language model objective, and the next sentence prediction objective.
+a. This pre-training involves two main tasks:
+
+Masked Language Modeling (MLM): Predicting masked words in a sentence, considering both left and right context.
+Next Sentence Prediction (NSP): Classifying whether two sentences follow each other logically.
+
+After pre-training, BERT can be fine-tuned for specific tasks by adding a small layer on top of the pre-trained model. This fine-tuning is much faster and cheaper than pre-training the entire model from scratch. 
+
+\subsection{Embeddings}
+The three matrices in BERT—token embeddings, segment embeddings, and positional embeddings—are generated as part of the model's training process. 
+
+For each unique Token ID (i.e. for each of the 30,522 words and subwords in the BERT Tokenizer’s vocabulary), the BERT model contains an embedding that is trained to represent that specific token. The Embedding Layer within the model is responsible for mapping tokens to their corresponding embeddings.
+
+Before a string of text is passed to the BERT model, the BERT Tokenizer is used to convert the input from a string into a list of integer Token IDs, where each ID directly maps to a word or part of a word in the original string.
+
+In addition to the Token Embeddings described so far, BERT also relies on Position Embeddings. While Token Embeddings are used to represent each possible word or subword that can be provided to the model, Position Embeddings represent the position of each token in the input sequence.
+
+The final type of embedding used by BERT is the Token Type Embedding, also called the Segment Embedding in the original BERT Paper. One of the tasks that BERT was originally trained to solve was Next Sentence Prediction. That is, given two sentences A and B, BERT was trained to determine whether B logically follows A.
+
+
+\subsection{BERTScore}
+BERTScore is an evaluation metric that utilizes the BERT model to compare texts more semantically than traditional metrics like BLEU. It leverages the contextualized embeddings provided by a pre-trained BERT model to assess the similarity between candidate and reference texts.\\
+
+The process begins by inputting both candidate and reference texts into the BERT model, which generates contextualized embeddings for each token in both texts. For each token, the similarity between its embedding and every token embedding in the comparison text is calculated using cosine similarity. This results in a similarity matrix where each entry represents the cosine similarity between the embeddings of a pair of tokens (one from the candidate sentence and one from the reference sentence).\\
+cosine similarity?
+
+The metric is computed symmetrically as follows:\\
+
+For each token embedding in the candidate sentence, find the maximum similarity score with any token embedding in the reference sentence, and average these scores across all tokens in the candidate sentence to obtain precision.\\
+
+Similarly, for each token embedding in the reference sentence, find the maximum similarity score with any token embedding in the candidate sentence, and average these scores across all tokens in the reference sentence to obtain recall.
+
+\[P_{BERT} = \frac{1}{|\hat{x}|} \sum_{\hat{x}_j\in \hat{x}} \max_{x_i \in x} x_i^T \hat{x_j} \]
+\[R_{BERT} = \frac{1}{|x|} \sum_{x_i \in x} \max_{\hat{x}_j\in \hat{x}} x_i^T \hat{x_j} \]
+
+
+
+Finally the $F_1$-score (an $F$-measure)
+is computed as the harmonic mean of precision and recall and is providing a balanced measure that considers both the model's ability to capture relevant information and its accuracy in predicting new text equally.
+
+\[F_{BERT} = 2\frac{P_{BERT}R_{BERT}}{P_{BERT} + R_{BERT}} \]
+\section{LLMs}
+\section{BLEU-Score}
+
+
+
+\section{Query generation}
+There are multiple approaches to consider when selecting the optimal prompts and information for a language model to generate high-quality summaries or characterizations. While rephrasing a task for a language model can influence the prompt's outcome to some degree, this study will primarily focus on selecting and curating the relevant literature data, which will be appended to the task of the prompt.\\
+
+One method to obtain the necessary information is to filter the text for sentences containing certain keywords. However, simply finding all sentences that mention a character's name is insufficient for a comprehensive description. Critical information about the character may be present in sentences that do not explicitly mention their name but refer to them indirectly. Consequently, important details can be missed using this technique and also additionally, this approach might include too much unnecessary information, especially for main characters, making it unsuitable for zero-shot character summary generation.\\
+
+(https://huggingface.co/intfloat/e5-mistral-7b-instruct) expand...
+To improve upon this, text embeddings can be utilized. For instance, using a model like E5-Mistral-7B-Instruct, which has 32 layers and an embedding size of 4096, we can chunk the literature into sections of roughly equal length and embed each chunk. This allows us to identify chunks that satisfy a certain premise, such as describing a particular character more accurately than others.\\
+
+Further improvements can be achieved by applying coreference resolution techniques (\cite{schroder-etal-2021-neural}, \cite{dobrovolskii-2021-word}) to identify all tokens that refer to the given entity. This helps in gathering more sentences relevant to the characters context.\\
+
+If it is possible to identify self-contained content scopes using coreference resolution and segmenting the content by highly self-referenced text passages, the language model can generate even better character profiles due to the additional relevant information.\\
+
+
+
+Another approach to consider is fine-tuning a language model like LLAMA to enhance text summarization results.\
+
+The generated characterizations can be evaluated both qualitatively and quantitatively. To compare human-written characterizations with those generated by the model, we can measure recall and precision using metrics like ROUGE and BLEU, and employ BERTScore as a semantic evaluation metric.\\
+
+Since language models are typically trained on extensive data, they might already contain information about certain books. To test this, we can compare queries that include key sentences to those that omit them. If the model produces the same output despite the missing key information, it suggests prior training on that data. Additionally, using books released after the model's training period ensures no pre-existing knowledge about the characters.\\
+
+Existing human-written characterizations will serve as benchmarks for assessing the model's output in terms of style, content, structure, and level of detail.
+
+
+i set up a ssh connection with the nlp-servers on the informatikum in order to be
+able to use their Llama models on their much more powerful GPUs and used HTTP-Requests
+in order to make prompts and get the results. For the weights of the model i used: 
+
+
+\section{weights quantized uniserve3r llama.cpp}

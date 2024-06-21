@@ -1,0 +1,122 @@
+% ---------------------------------------------------------------------
+% Das Dokument kompiliert mit pdflatex und ist auf Basis 
+% von Koma-Script entstanden. 
+%
+% Autor des Templates (für Anmerkungen): 
+% Michael von Riegen, riegen@informatik.uni-hamburg.de
+%
+% Einzelne Code-Teile für das Titelblatt sind aus dem Template 
+% von Benjamin Kirchheim entnommen.
+%
+% 25.05.09, Frank Langanke: Vorlage auf aktuelle KOMA-Version aktualisiert
+% 26.05.09, Michael von Riegen: Anmerkung --> aktuelles Koma-Script ist nötig!
+% 17.10.2016 neues Uni logo
+% ---------------------------------------------------------------------
+\documentclass[11pt,DIV=15,BCOR=20mm,bibliography=totoc]{scrbook}
+
+% Import von Paketen und Optionen die das gesamte Dokument betreffen
+% sind in myPreamble.sty ausgelagert.
+\usepackage{_preamble}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{subcaption}
+\usepackage[
+backend=biber,
+style=alphabetic,
+]{biblatex}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{array}
+
+\usetikzlibrary{pgfplots.groupplots}
+\pgfplotsset{compat=1.8}
+\pgfplotsset{
+    every non boxed x axis/.style={},
+}
+\usetikzlibrary{pgfplots.statistics, pgfplots.colorbrewer} 
+\usepgfplotslibrary{statistics}
+% Arbeitet man nur an einem Kapitel, wird durch folgenden Befehl nur dieses eingebunden.
+% Spart manuelles auskommentieren von vielen include-Befehlen;
+% hat keine Auswirkung auf input-Befehle
+% \includeonly{kapitel1}
+
+
+
+\makeatletter
+\pgfplotsset{
+    boxplot prepared from table/.code={
+        \def\tikz@plot@handler{\pgfplotsplothandlerboxplotprepared}%
+        \pgfplotsset{
+            /pgfplots/boxplot prepared from table/.cd,
+            #1,
+        }
+    },
+    /pgfplots/boxplot prepared from table/.cd,
+        table/.code={\pgfplotstablecopy{#1}\to\boxplot@datatable},
+        row/.initial=0,
+        make style readable from table/.style={
+            #1/.code={
+                \pgfplotstablegetelem{\pgfkeysvalueof{/pgfplots/boxplot prepared from table/row}}{##1}\of\boxplot@datatable
+                \pgfplotsset{boxplot/#1/.expand once={\pgfplotsretval}}
+            }
+        },
+        make style readable from table=lower whisker,
+        make style readable from table=upper whisker,
+        make style readable from table=lower quartile,
+        make style readable from table=upper quartile,
+        make style readable from table=median,
+        make style readable from table=lower notch,
+        make style readable from table=upper notch
+}
+\makeatother
+
+
+
+\pgfplotstableread[col sep=comma]{ressources/data/boxplot2.csv}\csvdata
+
+
+
+
+
+\addbibresource{_bibliography.bib}   
+\begin{document}
+
+
+% TITELSEITE
+\include{_titlepage}
+
+% VERZEICHNISSE (Inhaltsverzeichnis, Abkürzungen)
+% Vorspann einleiten --> Seitennummerierung römisch
+\frontmatter
+
+% Inhaltsverzeichnis
+\tableofcontents
+\cleardoublepage
+
+% Hauptteil einleiten --> Seitennummerierung wieder arabisch
+\mainmatter
+
+\include{introduction}
+\include{methodology}
+\include{related_work}
+\include{dataset}
+\include{experiments}
+\include{conclusion}
+\printbibliography
+\include{appendix}
+\cleardoublepage
+
+% VERZEICHNISSE (Abbildungen, Tabellen)
+% Literatur 
+%\nocite{wiki:wissarbeit}
+
+\cleardoublepage
+
+% ERKLÄRUNG
+\input{_eidversicherung}
+    
+\end{document}

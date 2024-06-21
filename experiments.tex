@@ -1,0 +1,724 @@
+\chapter{Experiments}
+
+All my experiments have been conducted partially on my own computer but also on a remote server from the LT group at the University of Hamburg. This was mainly due to accessing a better GPU like the RTX A1000 NVIDEA for prompting LLMS and creating embeddings.
+
+
+\section{Base Experiment}
+
+For my first experiment, I formulated four prompts with slightly different wordings to observe how varying prompts affect the outcomes of the LLM. For each prompt, I tested two versions: one with additional passages from the literature providing information about the character, and one without such information, requiring the model to rely solely on its training data. ``[INST]'' and ``[\textbackslash INST]'' mark the start and end of each query instruction. ``\{character\}'' and ``\{book\}'' will be replaced with the real character name and book title. ``\{passages\}'' marks the spot where a collection of retrieved passages from the book for the given character that might help the Llama model with its characterizations will be passed into the prompt.\\
+
+
+
+\begin{center}
+    \begin{tabular}{|c|m{10cm}|}
+        \hline
+        Prompt        & Instruction                                                                                                                                             \\ [0.5ex]
+        \hline\hline
+        $\delta_{1}$  & "[INST]Write a summary about the character \{character\} in the book \{book\}.[/INST]"                                                                  \\
+        \hline
+        $\delta_{1}'$ & "[INST]Write a summary about the character \{character\} in the given text passages: \textbackslash n \{help\}[/INST]"                                  \\
+        \hline\hline
+        $\delta_{2}$  & "[INST]Write a summary in the style of a fandom article about the character \{character\} in the book \{book\}.[/INST]"                                 \\
+        \hline
+        $\delta_{2}'$ & "[INST]Write a summary in the style of a fandom article about the character \{character\} in the given text passages: \textbackslash n \{help\}[/INST]" \\
+        \hline\hline
+        $\delta_{3}$  & "[INST]Provide a concise overview of the character \{character\} from the book \{book\}.[/INST]"                                                        \\
+        \hline
+        $\delta_{3}'$ & "[INST]Provide a concise overview of the character \{character\} based on the following excerpts: \textbackslash n \{help\}[/INST]"                     \\
+        \hline\hline
+        $\delta_{4}$  & "[INST]rite sumary bout thee cara cter \{character\} of th book \{book\}.[/INST]"                                                                       \\
+        \hline
+        $\delta_{4}'$ & "[INST]rite sumary bout thee cara cter \{character\} bsed th fllowing excerpts: \textbackslash n \{help\}[/INST]"                                       \\ [1ex]
+        \hline
+    \end{tabular}
+\end{center}
+
+
+
+As you can see, $\delta_{2}$ is more specific, requesting the style of a fandom article, whereas $\delta_{3}$ is less precise, asking only for an overview without specifying a particular format. The last prompt is similar to $\delta_{1}$ but is intentionally faulty by missing characters.These different prompts are used to determine the overall effects of various prompt wordings and faulty instructions on the language model.
+
+
+% this method isn't ideal, as regularly eliminating sentences could omit important context.
+In this first experiment, I selected additional information from the book by filtering for every sentence in which the character's name occurred at least once. Since the number of tokens might exceed the maximum input size of the LLaMA model, I removed every $n$-th sentence, where $n$ is calculated in such a way that the query size fits perfectly.
+Additionally, because characters are more likely to be introduced in the first sentences where they appear in the book, I added an additional cutoff $\alpha$. This cutoff represents the percentage of relevant sentences (with character name occurrences) to which every sentence with name occurence will be taken, so the rule of taking every $n$-th sentence only affects sentences after the cutoff. Overall the passage retrieval for this experiment $R_{base}$ works as follows. Let $S = \{s_i \mid 1 \leq i \leq k \}$ be the set of size $k$ which contains all relevant sentences containig the character and $l$ be the maximum inputsize of the Llama query. We first definde a function $S_{t}(a, b) = \{ s_{ti} \mid a \cdot k \leq ti \leq b \cdot k \}$, that enables a range selection of sentences with a lower and upper limit and a parameter $t$ for the stepsize. If we now choose our $n$ the right way 
+\[n = \begin{cases} 
+    \left\lfloor \frac{k - \alpha k}{l}\right\rfloor & \text{if } k - \alpha k > l\\
+    1 & \text{otherwise}
+\end{cases} \] we can write $R_{base}$ as \[R_{base} = S_{1}(0, \alpha) \cup S_{n} ( \alpha, 1) \].
+I fed the prompts through the mixtral 7b model with quantized weights.
+Quantization is a method used to decrease the computational and memory demands of running inference by using low-precision data types, such as 8-bit integers (int8), instead of the standard 32-bit floating-point (float32). Using fewer bits reduces the memory storage needed for the model, theoretically lowers energy consumption, and speeds up operations like matrix multiplication through integer arithmetic. This technique also enables models to run on embedded devices, which may only support integer data types. They are different types and levels of quantization and i started with the smallest $Q2_K$ (https://huggingface.co/ikawrakow/mixtral-instruct-8x7b-quantized-gguf) weights and therfor quickest responses. For the evaluation, I used BLEUScore and BERTScore to compare the results from the prompts against manually written articles from fandom.com.\\
+
+% \begin{figure}
+% \centering
+% \begin{tikzpicture}
+% \begin{axis}[
+%     xlabel={F1},
+%     ylabel={h},
+%     legend pos=north west,
+%     grid=both,
+%     width=10cm, % Adjust width as needed
+%     height=8cm % Adjust height as needed
+% ]
+
+% \addplot+[mark=none] table [x expr=\coordindex, y=F1, col sep=comma] {ressources/data/results.csv};
+
+
+% \legend{P, R, F1, h}
+
+% \legend{Data}
+% \end{axis}
+% \end{tikzpicture}
+% \caption{Plot of F1 vs h}
+% \label{fig:f1_vs_h}
+% \end{figure}
+
+% \begin{figure}
+% \centering
+% \begin{tikzpicture}
+% \begin{axis}[
+%     xlabel={F1},
+%     ylabel={h},
+%     legend pos=north west,
+%     grid=both,
+%     width=10cm, % Adjust width as needed
+%     height=8cm % Adjust height as needed
+% ]
+
+
+% \addplot+[mark=none] table [x expr=\coordindex, y=wF1, col sep=comma] {ressources/data/results.csv};
+
+% \legend{P, R, F1, h}
+
+% \legend{Data}
+% \end{axis}
+% \end{tikzpicture}
+% \caption{Plot of F1 vs h}
+% \label{fig:f1_vs_h}
+% \end{figure}
+
+% \subsection{Results}
+% \begin{figure}[H]
+%     \centering
+%     \begin{tikzpicture}
+%         \begin{axis}[
+%                 xlabel={F1},
+%                 ylabel={h},
+%                 legend pos=north west,
+%                 grid=both,
+%                 width=10cm, % Adjust width as needed
+%                 height=8cm % Adjust height as needed
+%             ]
+
+
+%             \addplot+[mark=none] table [x expr=\coordindex, y=h, col sep=comma] {ressources/data/results.csv};
+
+%             \legend{P, R, F1, h}
+
+%             \legend{Data}
+%         \end{axis}
+%     \end{tikzpicture}
+%     \caption{Plot of F1 vs h}
+%     \label{fig:f1_vs_h}
+% \end{figure}
+
+\subsection{Results}
+% \begin{figure}[H]
+%     \centering
+%     \makebox[\textwidth][c]{
+%         \begin{minipage}{1.1\textwidth}
+%             \begin{subfigure}[b]{0.45\textwidth}
+%                 \centering
+%                 \begin{tikzpicture}
+%                     \begin{axis}[
+%                             x tick label style={
+%                                     /pgf/number format/1000 sep=},
+%                             xlabel=BLEUScore,
+%                             ylabel=Amount,
+%                             enlargelimits=0.05,
+%                             legend style={at={(1.0,-0.2)},
+%                                     anchor=north,legend columns=-1},
+%                             ybar interval=0.7,
+%                         ]
+%                         \addplot
+%                         coordinates {(0.0,1) (1.4,288) (2.8,50) (4.3,15) (5.7,6) (7.2,1) (8.6,1) (11.5,1) };
+%                         \addplot
+%                         coordinates {(0.0,0) (1.4,266) (2.8,57) (4.3,24) (5.7,8) (7.2,7) (8.6,2) (11.5,0) };
+
+%                         \legend{$\delta'$,$\delta$}
+%                     \end{axis}
+%                 \end{tikzpicture}
+%                 \label{fig:enter-label}
+%             \end{subfigure}
+%             \hfill
+%             \begin{subfigure}[b]{0.45\textwidth}
+%                 \centering
+%                 \begin{tikzpicture}
+%                     \begin{axis}[
+%                             x tick label style={
+%                                     /pgf/number format/1000 sep=},
+%                             xlabel=BERTScore,
+%                             enlargelimits=0.05,
+%                             legend style={at={(1.0,-0.2)},
+%                                     anchor=north,legend columns=-1},
+%                             ybar interval=0.7,
+%                         ]
+%                         \addplot
+%                         coordinates {(0.38,0) (0.43,4) (0.47,46) (0.52,157) (0.56,119)
+%                                 (0.61,31) (0.65,0) };
+%                         \addplot
+%                         coordinates {(0.38,0) (0.43,0) (0.47,11) (0.52,90) (0.56,197)
+%                                 (0.61,60) (0.65,0) };
+
+%                         \legend{$\delta'$,$\delta$}
+%                     \end{axis}
+%                 \end{tikzpicture}
+%                 \label{fig:enter-label}
+%             \end{subfigure}
+%         \end{minipage}
+%     }
+%     \caption{Distribution of BERTScore and Blue-Metric without ($\delta$) and with passage retrieval ($\delta'$) in bins}
+% \end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ScatterPLOTS
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{
+        \begin{minipage}{1.1\textwidth}
+            \centering
+            \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                            enlargelimits=false,
+                            title={Prompt 1},
+                            xlabel={$BLEU(\delta)$},
+                            ylabel={$BLEU(\delta')$},
+                            xmin=0.35, xmax=0.65,
+                            ymin=0.35, ymax=0.65,
+                            xtick distance=0.1, ytick distance=0.1
+                        ]
+                        \addplot[color=black, thick, dotted] {x};
+                        \addplot+[
+                            color=blue,
+                            only marks,
+                            mark=o,
+                            mark size=1.0pt]
+                        table [col sep=comma, x=F1, y=wF1] {ressources/data/results.csv};
+                    \end{axis}
+                \end{tikzpicture}
+                \label{fig:prompt1}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                            enlargelimits=false,
+                            title={Prompt 2},
+                            xlabel={$BLEU(\delta)$},
+                            xmin=0.35, xmax=0.65,
+                            ymin=0.35, ymax=0.65,
+                            xtick distance=0.1, ytick distance=0.1
+                        ]
+                        \addplot[color=black, thick, dotted] {x};
+                        \addplot+[
+                            color=blue,
+                            only marks,
+                            mark=o,
+                            mark size=1.0pt]
+                        table [col sep=comma, x=F1, y=wF1] {ressources/data/results2.csv};
+                    \end{axis}
+                \end{tikzpicture}
+                \label{fig:prompt2}
+            \end{subfigure}
+            \vspace{0.5cm}
+            \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                            enlargelimits=false,
+                            title={Prompt 3},
+                            xlabel={$BLEU(\delta)$},
+                            ylabel={$BLEU(\delta')$},
+                            xmin=0.35, xmax=0.65,
+                            ymin=0.35, ymax=0.65,
+                            xtick distance=0.1, ytick distance=0.1
+                        ]
+                        \addplot[color=black, thick, dotted, domain=0:16] {x};
+                        \addplot+[
+                            color=blue,
+                            only marks,
+                            mark=o,
+                            mark size=1.0pt]
+                        table [col sep=comma, x=F1, y=wF1] {ressources/data/results3.csv};
+                    \end{axis}
+                \end{tikzpicture}
+                \label{fig:prompt3}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                            enlargelimits=false,
+                            title={Prompt 4},
+                            xlabel={$BLEU(\delta)$},
+                            xmin=0.35, xmax=0.65,
+                            ymin=0.35, ymax=0.65,
+                            xtick distance=0.1, ytick distance=0.1
+                        ]
+                        \addplot[color=black, thick, dotted, domain=0:16] {x};
+                        \addplot+[
+                            color=blue,
+                            only marks,
+                            mark=o,
+                            mark size=1.0pt]
+                        table [col sep=comma, x=F1, y=wF1] {ressources/data/results4.csv};
+                    \end{axis}
+                \end{tikzpicture}
+                \label{fig:prompt4}
+            \end{subfigure}
+        \end{minipage}
+    }
+    \caption{Blue-Metric of Zero-Shot Characterizations generated with Llama without ($\delta$) and with passage retrieval ($\delta'$) from the literature}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth][c]{
+        \begin{minipage}{1.1\textwidth}
+            \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                            enlargelimits=false,
+                            title={Prompt 1},
+                            xlabel={$BERT(\delta)$},
+                            ylabel={$BERT(\delta')$},
+                            xmin=0, xmax=16,
+                            ymin=0, ymax=16
+                        ]
+                        \addplot[color=black, thick, dotted, domain=0:16] {x};
+                        \addplot+[
+                            color=blue,
+                            only marks,
+                            mark=o,
+                            mark size=1.0pt]
+                        table [col sep=comma, x=h, y=wh]
+                            {ressources/data/results.csv};
+                    \end{axis}
+                \end{tikzpicture}
+                % \caption{Blue-Metric of Characterizations generated with Llama prompt 1 with and without additional textpassages from the literatur}
+                \label{fig:enter-label}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                            enlargelimits=false,
+                            title={Prompt 2},
+                            xlabel={$BERT(\delta)$},
+                            % ylabel={prompt with additional textpassages},
+                            xmin=0, xmax=16,
+                            ymin=0, ymax=16
+                        ]
+                        \addplot[color=black, thick, dotted, domain=0:16] {x};
+                        \addplot+[
+                            color=blue,
+                            only marks,
+                            mark=o,
+                            mark size=1.0pt]
+                        table [col sep=comma, x=h, y=wh]
+                            {ressources/data/results.csv};
+                    \end{axis}
+                \end{tikzpicture}
+                % \caption{Blue-Metric of Characterizations generated with Llama prompt 1 with and without additional textpassages from the literatur}
+                \label{fig:enter-label}
+            \end{subfigure}
+            \vspace{0.5cm}
+            \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                            enlargelimits=false,
+                            title={Prompt 3},
+                            xlabel={$BERT(\delta)$},
+                            ylabel={$BERT(\delta')$},
+                            xmin=0, xmax=16,
+                            ymin=0, ymax=16
+                        ]
+                        \addplot[color=black, thick, dotted, domain=0:16] {x};
+                        \addplot+[
+                            color=blue,
+                            only marks,
+                            mark=o,
+                            mark size=1.0pt]
+                        table [col sep=comma, x=h, y=wh]
+                            {ressources/data/results.csv};
+                    \end{axis}
+                \end{tikzpicture}
+                % \caption{BERTScore of Characterizations generated with Llama prompt 1 with and without additional textpassages from the literatur}
+                \label{fig:enter-label}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \begin{tikzpicture}
+                    \begin{axis}[
+                            enlargelimits=false,
+                            title={Prompt 4},
+                            xlabel={$BERT(\delta)$},
+                            % ylabel={prompt with additional textpassages},
+                            xmin=0, xmax=16,
+                            ymin=0, ymax=16
+                        ]
+                        \addplot[color=black, thick, dotted, domain=0:16] {x};
+                        \addplot+[
+                            color=blue,
+                            only marks,
+                            mark=o,
+                            mark size=1.0pt]
+                        table [col sep=comma, x=h, y=wh]
+                            {ressources/data/results.csv};
+                    \end{axis}
+                \end{tikzpicture}
+                % \caption{BERTScore of Characterizations generated with Llama prompt 1 with and without additional textpassages from the literatur}
+                \label{fig:enter-label}
+            \end{subfigure}
+        \end{minipage}
+    }
+    \caption{BERTScore of Zero-Shot Characterizations generated with Llama without ($\delta$) and with passage retrieval ($\delta'$) from the literatur}
+\end{figure}
+
+
+
+%Other
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \pgfplotstableread[col sep=comma]{ressources/data/boxplot.csv}\csvdata
+            \pgfplotstabletranspose\datatransposed{\csvdata}
+            \begin{axis}[
+                    boxplot/draw direction = y,
+                    axis x line* = bottom,
+                    axis y line = left,
+                    enlarge y limits,
+                    ymajorgrids,
+                    cycle list={{blue}},
+                    xtick = {1,2,3,4,5,6,7,8},
+                    xticklabel style = {align=center, font=\small},
+                    xticklabels = {$\delta_{1}$, $\delta_{1}'$, $\delta_{2}$, $\delta_{2}'$, $\delta_{3}$, $\delta_{3}'$, $\delta_{4}$, $\delta_{4}'$},
+                    xtick style = {draw=none},
+                    ylabel = {$BLEU$}
+                ]
+                \foreach \n in {1,...,8} {
+                        \addplot+[boxplot, draw=black] table[y index=\n] {\datatransposed};
+                    }
+            \end{axis}
+        \end{tikzpicture}
+        \label{fig:boxplot}
+    \end{subfigure}
+    \hfill
+    \vspace{1cm}
+    \hfill
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{groupplot}[
+                    group style={
+                            group size=1 by 2,
+                            vertical sep=0pt
+                        },
+                    boxplot/draw direction = y,
+                    enlarge y limits,
+                    ymajorgrids,
+                    cycle list={{blue}},
+                    xmin=0,
+                    xmax=9,
+                    height=10cm,
+                    width=10cm
+                ]
+                \nextgroupplot[
+                    hide x axis,
+                    axis y line=left,
+                    axis y discontinuity=parallel,
+                    ymin=7,
+                    ymax=18,
+                    height=3.5cm,
+                    y label style={at={(axis description cs:-0.1,.1)},rotate=0,anchor=south},
+                    ylabel = ${BERT}$
+                ]
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=0, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=1, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=2, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=3, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=4, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=5, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=6, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=7, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+
+
+
+
+                \nextgroupplot[
+                    xtick = {1,2,3,4,5,6,7,8},
+                    xticklabel style = {align=center, font=\small},
+                    xticklabels = {$\delta_{1}$, $\delta_{1}'$, $\delta_{2}$, $\delta_{2}'$, $\delta_{3}$, $\delta_{3}'$, $\delta_{4}$, $\delta_{4}'$},
+                    xtick style = {draw=none},
+                    axis x line* = bottom,
+                    axis y line = left,
+                    ymin=0,
+                    ymax=2,
+                    height=3.5cm
+                ]
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=0, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=1, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=2, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=3, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=4, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=5, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=6, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+                \addplot+[
+                    boxplot prepared from table={
+                            table=\csvdata,
+                            row=7, % 0-based index
+                            lower whisker=lw,
+                            upper whisker=uw,
+                            lower quartile=lq,
+                            upper quartile=uq,
+                            median=med
+                        }, boxplot prepared,   draw=black
+                ]
+                coordinates {};
+
+
+            \end{groupplot}
+        \end{tikzpicture}
+
+        \label{fig:boxplot}
+    \end{subfigure}
+    \vspace{1cm}
+    \caption{Boxplots of BLEU- and BERTScores for every prompt ($\delta_{1}, \delta_{1}', \delta_{2},...,\delta_{4}'$)}
+\end{figure}
+
+
+
+\subsection{Analysis}
+
+At this stage, the process of fetching fandom articles wasn't complete, resulting in a dataset with some duplicates and missing characterizations. Despite these limitations, the data is still sufficient to demonstrate two points. First, the results with additional passages are at least as good as, or slightly better than, those without. Second, the results vary slightly across the four different prompts.\\
+
+As we can see, the BLEU scores from the results of each prompt mostly improve after passage retrieval. Although the maximum values of $\delta_{1}$ and $\delta_{2}$ have decreased slightly in $\delta_{1}'$ and $\delta_{2}'$, the minimum values, Q1, and Q3 have significantly increased, as observed in the box plots. For both $\delta_{3}$ and $\delta_{4}$, every box plot quartile has improved.\\
+
+For BERTScore, the improvement isn't quite as visible. In fact, the upper quartiles have a lower maximum after passage retrieval, but Q1-Q3 has improved slightly for every prompt. Consequently, the results are more compact. Some outliers close to the maximum in Q4 might score so high prior to passage retrieval due to Llama being trained on similar articles to the fandom articles. Especially when generating summaries for main characters, Llama might already have a great knowledge base for that character, and relying solely on the additional passed sentences might therefore be counterproductive.\\
+
+In summary, semantically, the results haven't improved significantly. The sentences passed to the LLM provide too little information about the general character yet.
+
+
+
+\newpage
+\section{Selected Embedded chunks}
+
+We will now continue with prompt 1 from the base experiment since it had the highest results in both metrics. We will now improve on the method for passage retrieval.
