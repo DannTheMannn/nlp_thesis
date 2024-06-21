@@ -38,7 +38,7 @@ For my first experiment, I formulated four prompts with slightly different wordi
 As you can see, $\delta_{2}$ is more specific, requesting the style of a fandom article, whereas $\delta_{3}$ is less precise, asking only for an overview without specifying a particular format. The last prompt is similar to $\delta_{1}$ but is intentionally faulty by missing characters.These different prompts are used to determine the overall effects of various prompt wordings and faulty instructions on the language model.
 
 
-% this method isn't ideal, as regularly eliminating sentences could omit important context.
+
 In this first experiment, I selected additional information from the book by filtering for every sentence in which the character's name occurred at least once. Since the number of tokens might exceed the maximum input size of the LLaMA model, I removed every $n$-th sentence, where $n$ is calculated in such a way that the query size fits perfectly.
 Additionally, because characters are more likely to be introduced in the first sentences where they appear in the book, I added an additional cutoff $\alpha$. This cutoff represents the percentage of relevant sentences (with character name occurrences) to which every sentence with name occurence will be taken, so the rule of taking every $n$-th sentence only affects sentences after the cutoff. Overall the passage retrieval for this experiment $R_{base}$ works as follows. Let $S = \{s_i \mid 1 \leq i \leq k \}$ be the set of size $k$ which contains all relevant sentences containig the character and $l$ be the maximum inputsize of the Llama query. We first definde a function $S_{t}(a, b) = \{ s_{ti} \mid a \cdot k \leq ti \leq b \cdot k \}$, that enables a range selection of sentences with a lower and upper limit and a parameter $t$ for the stepsize. If we now choose our $n$ the right way 
 \[n = \begin{cases} 
@@ -707,14 +707,13 @@ Quantization is a method used to decrease the computational and memory demands o
 
 
 \subsection{Analysis}
+Obviously the method of passage retrieval used for this experiment isn't ideal, as regularly eliminating sentences could omit important context, also at this stage, the process of fetching fandom articles wasn't complete, resulting in a dataset with some duplicates and missing characterizations. Despite these limitations, the data is still sufficient to show two important aspects of the data. First, the results with passage retrieval are at least as good as, or already slightly better than, those without. Second, the results vary only slightly across the four different prompts. Befor we investigate that further lets have an more detailed look at the results.\\
 
-At this stage, the process of fetching fandom articles wasn't complete, resulting in a dataset with some duplicates and missing characterizations. Despite these limitations, the data is still sufficient to demonstrate two points. First, the results with additional passages are at least as good as, or slightly better than, those without. Second, the results vary slightly across the four different prompts.\\
+As we can see, the BLEU scores of each prompt mostly improve after passage retrieval. Although the maximum values of $\delta_{1}$ and $\delta_{2}$ have decreased slightly in $\delta_{1}'$ and $\delta_{2}'$, the minimum values, Q1, and Q3 have significantly increased, as observed in the box plots. For both $\delta_{3}$ and $\delta_{4}$, every box plot quartile has improved.\\
 
-As we can see, the BLEU scores from the results of each prompt mostly improve after passage retrieval. Although the maximum values of $\delta_{1}$ and $\delta_{2}$ have decreased slightly in $\delta_{1}'$ and $\delta_{2}'$, the minimum values, Q1, and Q3 have significantly increased, as observed in the box plots. For both $\delta_{3}$ and $\delta_{4}$, every box plot quartile has improved.\\
+For BERTScore, the improvement isn't quite as visible. In fact, the upper quartiles have a lower maximum after passage retrieval, but Q1-Q3 has improved slightly for every prompt. Consequently, the results are more compact. Some outliers close to the maximum in Q4 might score so high prior to passage retrieval due to Llama being trained on similar information to the fandom articles. Especially when generating summaries for main characters, Llama might already have a great knowledge base for that character, and relying solely on the additional passed sentences might therefore be hindering in generating a good characterization.\\
 
-For BERTScore, the improvement isn't quite as visible. In fact, the upper quartiles have a lower maximum after passage retrieval, but Q1-Q3 has improved slightly for every prompt. Consequently, the results are more compact. Some outliers close to the maximum in Q4 might score so high prior to passage retrieval due to Llama being trained on similar articles to the fandom articles. Especially when generating summaries for main characters, Llama might already have a great knowledge base for that character, and relying solely on the additional passed sentences might therefore be counterproductive.\\
-
-In summary, semantically, the results haven't improved significantly. The sentences passed to the LLM provide too little information about the general character yet.
+In summary, semantically, the results have only improved slightly and the different wordings in the prompts definately have an influence on the results average and variance (ref figure).
 
 
 

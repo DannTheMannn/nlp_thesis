@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.6)  21 JUN 2024 23:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.6)  22 JUN 2024 00:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1466,21 +1466,21 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
-Underfull \hbox (badness 10000) in paragraph at lines 711--712
+Underfull \hbox (badness 10000) in paragraph at lines 710--711
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 713--714
+Underfull \hbox (badness 10000) in paragraph at lines 712--713
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 715--716
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 714--715
 
  []
 
-[18] [19]) [20]
+[19]) [20]
 \openout2 = `conclusion.aux'.
 
  (conclusion.tex
@@ -1538,13 +1538,13 @@ Package logreq Info: Writing requests to 'masterthesis.run.xml'.
 Here is how much of TeX's memory you used:
  50351 strings out of 474424
  1195545 string characters out of 5741740
- 3355851 words of memory out of 5000000
+ 3355849 words of memory out of 5000000
  71814 multiletter control sequences out of 15000+600000
  598827 words of font info for 124 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  108i,20n,107p,10950b,2863s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmri.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on masterthesis.pdf (31 pages, 660179 bytes).
+Output written on masterthesis.pdf (31 pages, 660457 bytes).
 PDF statistics:
  370 PDF objects out of 1000 (max. 8388607)
  69 named destinations out of 1000 (max. 500000)
