@@ -1312,7 +1312,7 @@ chapter 3.
 File: ressources/images/Transformer.png Graphic file (type png)
 <use ressources/images/Transformer.png>
 Package pdftex.def Info: ressources/images/Transformer.png  used on input line 22.
-(pdftex.def)             Requested size: 170.71652pt x 247.09998pt.
+(pdftex.def)             Requested size: 227.62204pt x 329.46663pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1665,7 +1665,7 @@ Here is how much of TeX's memory you used:
  1145 hyphenation exceptions out of 8191
  108i,20n,107p,10950b,2863s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmri.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on masterthesis.pdf (33 pages, 961179 bytes).
+Output written on masterthesis.pdf (33 pages, 961228 bytes).
 PDF statistics:
  374 PDF objects out of 1000 (max. 8388607)
  75 named destinations out of 1000 (max. 500000)
