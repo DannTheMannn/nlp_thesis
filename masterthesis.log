@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.6)  22 JUN 2024 00:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.6)  20 JUL 2024 11:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -975,28 +975,64 @@ LaTeX Font Info:    Trying to load font information for T1+ppl on input line 86.
 File: t1ppl.fd 2001/06/04 font definitions for T1/ppl.
 ) (masterthesis.aux (_titlepage.aux) (introduction.aux) (methodology.aux) (related_work.aux) (dataset.aux) (experiments.aux
 
-LaTeX Warning: Label `fig:enter-label' multiply defined.
+LaTeX Warning: Label `fig:prompt1' multiply defined.
 
 
-LaTeX Warning: Label `sub@fig:enter-label' multiply defined.
+LaTeX Warning: Label `sub@fig:prompt1' multiply defined.
 
 
-LaTeX Warning: Label `fig:enter-label' multiply defined.
+LaTeX Warning: Label `fig:prompt2' multiply defined.
 
 
-LaTeX Warning: Label `sub@fig:enter-label' multiply defined.
+LaTeX Warning: Label `sub@fig:prompt2' multiply defined.
 
 
-LaTeX Warning: Label `fig:enter-label' multiply defined.
+LaTeX Warning: Label `fig:prompt3' multiply defined.
 
 
-LaTeX Warning: Label `sub@fig:enter-label' multiply defined.
+LaTeX Warning: Label `sub@fig:prompt3' multiply defined.
+
+
+LaTeX Warning: Label `fig:prompt4' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:prompt4' multiply defined.
 
 
 LaTeX Warning: Label `fig:boxplot' multiply defined.
 
 
 LaTeX Warning: Label `sub@fig:boxplot' multiply defined.
+
+
+LaTeX Warning: Label `fig:prompts2' multiply defined.
+
+
+LaTeX Warning: Label `fig:prompt1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:prompt1' multiply defined.
+
+
+LaTeX Warning: Label `fig:prompt2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:prompt2' multiply defined.
+
+
+LaTeX Warning: Label `fig:prompt1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:prompt1' multiply defined.
+
+
+LaTeX Warning: Label `fig:prompt2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:prompt2' multiply defined.
+
+
+LaTeX Warning: Label `fig:prompts2' multiply defined.
 
 ) (conclusion.aux) (appendix.aux))
 \openout1 = `masterthesis.aux'.
@@ -1212,18 +1248,104 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
 ]
 chapter 2.
-[3]
+
+LaTeX Warning: Citation '10.1007/3-540-36127-8_20' on page 3 undefined on input line 4.
+
+
+LaTeX Warning: Citation 'brahman-etal-2021-characters-tell' on page 3 undefined on input line 7.
+
+
+LaTeX Warning: Citation 'schroder-etal-2021-neural' on page 3 undefined on input line 30.
+
+[3] [4]
 Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 73--74
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
 
 
+Overfull \hbox (11.50241pt too wide) in paragraph at lines 72--74
+[]\T1/ppl/m/n/10.95 (https://huggingface.co/intfloat/e5-mistral-7b-instruct) ex-pand... To im-pro-ve upon this,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 72--74
+
+ []
+
+
+LaTeX Warning: Citation 'schroder-etal-2021-neural' on page 5 undefined on input line 75.
+
+
+LaTeX Warning: Citation 'dobrovolskii-2021-word' on page 5 undefined on input line 75.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 75--76
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+) [6]
+\openout2 = `related_work.aux'.
+
+ (related_work.tex
+chapter 3.
+<ressources/images/Transformer.png, id=112, 360.74776pt x 522.15076pt>
+File: ressources/images/Transformer.png Graphic file (type png)
+<use ressources/images/Transformer.png>
+Package pdftex.def Info: ressources/images/Transformer.png  used on input line 22.
+(pdftex.def)             Requested size: 170.71652pt x 247.09998pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 6575) has occurred while \output is active []
+
+ [7
+
+
+
+
+
+]
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 35.
+ (C:\Users\danie\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ppl.fd
+File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
+) [8 <./ressources/images/Transformer.png>] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 64--65
+
+ []
+
+
+Overfull \hbox (2.87383pt too wide) in paragraph at lines 79--80
+\T1/ppl/m/n/10.95 tasks with re-la-tive-ly small amounts of da-ta. Fine-tuning in-vol-ves ad-ju-sting the pre-trained
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 90--92
 
  []
 
@@ -1233,64 +1355,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 94--95
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
 Underfull \hbox (badness 10000) in paragraph at lines 96--97
 
  []
 
-
-Overfull \hbox (11.50241pt too wide) in paragraph at lines 98--100
-[]\T1/ppl/m/n/10.95 (https://huggingface.co/intfloat/e5-mistral-7b-instruct) ex-pand... To im-pro-ve upon this,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 98--100
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 101--102
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
-
- []
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-
- []
-
-) [7]
-\openout2 = `related_work.aux'.
-
- (related_work.tex [8
-
-
-
-
-
-]
-chapter 3.
-) [9]
+[11]) [12]
 \openout2 = `dataset.aux'.
 
- (dataset.tex [10
-
-
-
-
-
-]
+ (dataset.tex
 chapter 4.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--5
@@ -1303,219 +1375,260 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
+[13
 
- []
 
-) [12]
+
+
+
+]) [14]
 \openout2 = `experiments.aux'.
 
  (experiments.tex
 chapter 5.
 
+Package caption Warning: \label without proper reference on input line 1256.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:prompt2' on page 15 undefined on input line 8.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13
+[15
 
 
 
 
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]
-Overfull \hbox (4.45782pt too wide) in paragraph at lines 47--50
-\T1/ppl/m/n/10.95 (https://huggingface.co/ikawrakow/mixtral-instruct-8x7b-quantized-gguf) weights and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--50
+Underfull \hbox (badness 10000) in paragraph at lines 51--53
 
  []
 
+[16]
+PGFPlots: reading {ressources/data/results.csv}
+PGFPlots: reading {ressources/data/results.csv}
 PGFPlots: reading {ressources/data/results.csv}
 
-Overfull \hbox (24.08116pt too wide) in paragraph at lines 298--298
+Overfull \hbox (35.46722pt too wide) in paragraph at lines 338--338
  [][] 
  []
 
 PGFPlots: reading {ressources/data/results2.csv}
+PGFPlots: reading {ressources/data/results2.csv}
+PGFPlots: reading {ressources/data/results2.csv}
 
-Overfull \hbox (5.12521pt too wide) in paragraph at lines 298--298
+Overfull \hbox (16.53752pt too wide) in paragraph at lines 338--338
  [][] 
  []
 
 PGFPlots: reading {ressources/data/results3.csv}
+PGFPlots: reading {ressources/data/results3.csv}
+PGFPlots: reading {ressources/data/results3.csv}
 
-Overfull \hbox (24.08116pt too wide) in paragraph at lines 298--298
+Overfull \hbox (35.4674pt too wide) in paragraph at lines 338--338
  [][] 
  []
 
 PGFPlots: reading {ressources/data/results4.csv}
+PGFPlots: reading {ressources/data/results4.csv}
+PGFPlots: reading {ressources/data/results4.csv}
 
-Overfull \hbox (5.12521pt too wide) in paragraph at lines 298--298
+Overfull \hbox (16.55107pt too wide) in paragraph at lines 338--338
  [][] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15]
-PGFPlots: reading {ressources/data/results.csv}
-
-Overfull \hbox (30.26826pt too wide) in paragraph at lines 406--406
- [][] 
- []
-
-PGFPlots: reading {ressources/data/results.csv}
-
-Overfull \hbox (11.31232pt too wide) in paragraph at lines 406--406
- [][] 
- []
-
-PGFPlots: reading {ressources/data/results.csv}
-
-Overfull \hbox (30.26826pt too wide) in paragraph at lines 406--406
- [][] 
- []
-
-PGFPlots: reading {ressources/data/results.csv}
-
-Overfull \hbox (11.31232pt too wide) in paragraph at lines 406--406
- [][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]
-PGFPlots: reading {ressources/data/boxplot.csv}
-Package pgfplots info on input line 439: boxplot: got lower quartile=4.3787117e-1
-Package pgfplots info on input line 439: boxplot: got median=5.045784e-1
-Package pgfplots info on input line 439: boxplot: got upper quartile=5.2901382e-1
-Package pgfplots info on input line 439: boxplot: got sample size=5.0e0
-Package pgfplots info on input line 439: boxplot: got lower whisker=3.828257620334625e-1
-Package pgfplots info on input line 439: boxplot: got upper whisker=6.224778294563293e-1
-Package pgfplots info on input line 439: boxplot: got lower quartile=4.72955322e-1
-Package pgfplots info on input line 439: boxplot: got median=5.3041077e-1
-Package pgfplots info on input line 439: boxplot: got upper quartile=5.4912262e-1
-Package pgfplots info on input line 439: boxplot: got sample size=5.0e0
-Package pgfplots info on input line 439: boxplot: got lower whisker=4.249446392059326e-1
-Package pgfplots info on input line 439: boxplot: got upper whisker=6.148388385772705e-1
-Package pgfplots info on input line 439: boxplot: got lower quartile=4.30826797e-1
-Package pgfplots info on input line 439: boxplot: got median=5.1449966e-1
-Package pgfplots info on input line 439: boxplot: got upper quartile=5.3637848e-1
-Package pgfplots info on input line 439: boxplot: got sample size=5.0e0
-Package pgfplots info on input line 439: boxplot: got lower whisker=3.590573072433471e-1
-Package pgfplots info on input line 439: boxplot: got upper whisker=6.09817624092102e-1
-Package pgfplots info on input line 439: boxplot: got lower quartile=4.63695297e-1
-Package pgfplots info on input line 439: boxplot: got median=5.1954956e-1
-Package pgfplots info on input line 439: boxplot: got upper quartile=5.3851013e-1
-Package pgfplots info on input line 439: boxplot: got sample size=5.0e0
-Package pgfplots info on input line 439: boxplot: got lower whisker=4.185141026973724e-1
-Package pgfplots info on input line 439: boxplot: got upper whisker=5.998854041099548e-1
-Package pgfplots info on input line 439: boxplot: got lower quartile=4.42012329e-1
-Package pgfplots info on input line 439: boxplot: got median=5.060318e-1
-Package pgfplots info on input line 439: boxplot: got upper quartile=5.2866058e-1
-Package pgfplots info on input line 439: boxplot: got sample size=5.0e0
-Package pgfplots info on input line 439: boxplot: got lower whisker=3.904823362827301e-1
-Package pgfplots info on input line 439: boxplot: got upper whisker=5.999771356582642e-1
-Package pgfplots info on input line 439: boxplot: got lower quartile=4.52795639e-1
-Package pgfplots info on input line 439: boxplot: got median=5.2607803e-1
-Package pgfplots info on input line 439: boxplot: got upper quartile=5.4694672e-1
-Package pgfplots info on input line 439: boxplot: got sample size=5.0e0
-Package pgfplots info on input line 439: boxplot: got lower whisker=3.905723392963409e-1
-Package pgfplots info on input line 439: boxplot: got upper whisker=6.137956380844116e-1
-Package pgfplots info on input line 439: boxplot: got lower quartile=4.37993164e-1
-Package pgfplots info on input line 439: boxplot: got median=4.99127045e-1
-Package pgfplots info on input line 439: boxplot: got upper quartile=5.2397919e-1
-Package pgfplots info on input line 439: boxplot: got sample size=5.0e0
-Package pgfplots info on input line 439: boxplot: got lower whisker=3.904797434806824e-1
-Package pgfplots info on input line 439: boxplot: got upper whisker=6.140472888946533e-1
-Package pgfplots info on input line 439: boxplot: got lower quartile=4.65387573e-1
-Package pgfplots info on input line 439: boxplot: got median=5.289238e-1
-Package pgfplots info on input line 439: boxplot: got upper quartile=5.4687805e-1
-Package pgfplots info on input line 439: boxplot: got sample size=5.0e0
-Package pgfplots info on input line 439: boxplot: got lower whisker=4.114735126495361e-1
-Package pgfplots info on input line 439: boxplot: got upper whisker=6.168897151947021e-1
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 440.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 440.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 440.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 440.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
-Underfull \hbox (badness 10000) in paragraph at lines 710--711
+PGFPlots: reading {ressources/data/results.csv}
+PGFPlots: reading {ressources/data/results.csv}
+PGFPlots: reading {ressources/data/results.csv}
+
+Overfull \hbox (32.72394pt too wide) in paragraph at lines 623--623
+ [][] 
+ []
+
+PGFPlots: reading {ressources/data/results2.csv}
+PGFPlots: reading {ressources/data/results2.csv}
+PGFPlots: reading {ressources/data/results2.csv}
+
+Overfull \hbox (13.80394pt too wide) in paragraph at lines 623--623
+ [][] 
+ []
+
+PGFPlots: reading {ressources/data/results3.csv}
+PGFPlots: reading {ressources/data/results3.csv}
+PGFPlots: reading {ressources/data/results3.csv}
+
+Overfull \hbox (32.72394pt too wide) in paragraph at lines 623--623
+ [][] 
+ []
+
+PGFPlots: reading {ressources/data/results4.csv}
+PGFPlots: reading {ressources/data/results4.csv}
+PGFPlots: reading {ressources/data/results4.csv}
+
+Overfull \hbox (13.80394pt too wide) in paragraph at lines 623--623
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [18]
+PGFPlots: reading {ressources/data/boxplot.csv}
+Package pgfplots info on input line 658: boxplot: got lower quartile=4.3787117e-1
+Package pgfplots info on input line 658: boxplot: got median=5.045784e-1
+Package pgfplots info on input line 658: boxplot: got upper quartile=5.2901382e-1
+Package pgfplots info on input line 658: boxplot: got sample size=5.0e0
+Package pgfplots info on input line 658: boxplot: got lower whisker=3.828257620334625e-1
+Package pgfplots info on input line 658: boxplot: got upper whisker=6.224778294563293e-1
+Package pgfplots info on input line 658: boxplot: got lower quartile=4.72955322e-1
+Package pgfplots info on input line 658: boxplot: got median=5.3041077e-1
+Package pgfplots info on input line 658: boxplot: got upper quartile=5.4912262e-1
+Package pgfplots info on input line 658: boxplot: got sample size=5.0e0
+Package pgfplots info on input line 658: boxplot: got lower whisker=4.249446392059326e-1
+Package pgfplots info on input line 658: boxplot: got upper whisker=6.148388385772705e-1
+Package pgfplots info on input line 658: boxplot: got lower quartile=4.30826797e-1
+Package pgfplots info on input line 658: boxplot: got median=5.1449966e-1
+Package pgfplots info on input line 658: boxplot: got upper quartile=5.3637848e-1
+Package pgfplots info on input line 658: boxplot: got sample size=5.0e0
+Package pgfplots info on input line 658: boxplot: got lower whisker=3.590573072433471e-1
+Package pgfplots info on input line 658: boxplot: got upper whisker=6.09817624092102e-1
+Package pgfplots info on input line 658: boxplot: got lower quartile=4.63695297e-1
+Package pgfplots info on input line 658: boxplot: got median=5.1954956e-1
+Package pgfplots info on input line 658: boxplot: got upper quartile=5.3851013e-1
+Package pgfplots info on input line 658: boxplot: got sample size=5.0e0
+Package pgfplots info on input line 658: boxplot: got lower whisker=4.185141026973724e-1
+Package pgfplots info on input line 658: boxplot: got upper whisker=5.998854041099548e-1
+Package pgfplots info on input line 658: boxplot: got lower quartile=4.42012329e-1
+Package pgfplots info on input line 658: boxplot: got median=5.060318e-1
+Package pgfplots info on input line 658: boxplot: got upper quartile=5.2866058e-1
+Package pgfplots info on input line 658: boxplot: got sample size=5.0e0
+Package pgfplots info on input line 658: boxplot: got lower whisker=3.904823362827301e-1
+Package pgfplots info on input line 658: boxplot: got upper whisker=5.999771356582642e-1
+Package pgfplots info on input line 658: boxplot: got lower quartile=4.52795639e-1
+Package pgfplots info on input line 658: boxplot: got median=5.2607803e-1
+Package pgfplots info on input line 658: boxplot: got upper quartile=5.4694672e-1
+Package pgfplots info on input line 658: boxplot: got sample size=5.0e0
+Package pgfplots info on input line 658: boxplot: got lower whisker=3.905723392963409e-1
+Package pgfplots info on input line 658: boxplot: got upper whisker=6.137956380844116e-1
+Package pgfplots info on input line 658: boxplot: got lower quartile=4.37993164e-1
+Package pgfplots info on input line 658: boxplot: got median=4.99127045e-1
+Package pgfplots info on input line 658: boxplot: got upper quartile=5.2397919e-1
+Package pgfplots info on input line 658: boxplot: got sample size=5.0e0
+Package pgfplots info on input line 658: boxplot: got lower whisker=3.904797434806824e-1
+Package pgfplots info on input line 658: boxplot: got upper whisker=6.140472888946533e-1
+Package pgfplots info on input line 658: boxplot: got lower quartile=4.65387573e-1
+Package pgfplots info on input line 658: boxplot: got median=5.289238e-1
+Package pgfplots info on input line 658: boxplot: got upper quartile=5.4687805e-1
+Package pgfplots info on input line 658: boxplot: got sample size=5.0e0
+Package pgfplots info on input line 658: boxplot: got lower whisker=4.114735126495361e-1
+Package pgfplots info on input line 658: boxplot: got upper whisker=6.168897151947021e-1
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 10.42007pt on input line 659.
+LaTeX Font Info:    Font shape `U/msa/m/n' will be
+(Font)              scaled to size 7.91925pt on input line 659.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 10.42007pt on input line 659.
+LaTeX Font Info:    Font shape `U/msb/m/n' will be
+(Font)              scaled to size 7.91925pt on input line 659.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19]
+Underfull \hbox (badness 10000) in paragraph at lines 950--951
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 712--713
+Underfull \vbox (badness 1675) has occurred while \output is active []
+
+ [20]
+Underfull \hbox (badness 10000) in paragraph at lines 952--953
 
  []
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 714--715
 
+LaTeX Warning: Reference `fig:enter-label' on page 21 undefined on input line 956.
+
+[21]
+PGFPlots: reading {ressources/data/normal_eval.csv}
+PGFPlots: reading {ressources/data/normal_eval.csv}
+PGFPlots: reading {ressources/data/normal_eval.csv}
+
+Overfull \hbox (35.46722pt too wide) in paragraph at lines 1109--1109
+ [][] 
  []
 
-[19]) [20]
+PGFPlots: reading {ressources/data/normal_eval2.csv}
+PGFPlots: reading {ressources/data/normal_eval2.csv}
+PGFPlots: reading {ressources/data/normal_eval2.csv}
+
+Overfull \hbox (16.54906pt too wide) in paragraph at lines 1109--1109
+ [][] 
+ []
+
+PGFPlots: reading {ressources/data/normal_eval.csv}
+PGFPlots: reading {ressources/data/normal_eval.csv}
+PGFPlots: reading {ressources/data/normal_eval.csv}
+
+Overfull \hbox (32.72394pt too wide) in paragraph at lines 1256--1256
+ [][] 
+ []
+
+PGFPlots: reading {ressources/data/normal_eval2.csv}
+PGFPlots: reading {ressources/data/normal_eval2.csv}
+PGFPlots: reading {ressources/data/normal_eval2.csv}
+
+Overfull \hbox (13.80394pt too wide) in paragraph at lines 1256--1256
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22]) [23]
 \openout2 = `conclusion.aux'.
 
- (conclusion.tex
-chapter 6.
-) [21
+ (conclusion.tex [24
 
-
-
-
-
-] [22
 
 
 
 
 ]
-chapter without number
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 109.
-(C:\Users\danie\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [23]
+chapter 6.
+) [25]
+
+LaTeX Warning: Empty bibliography on input line 109.
+
 \openout2 = `appendix.aux'.
 
- (appendix.tex [24
+(appendix.tex [26
+
+
 
 
 
 ]
 chapter 7.
-) [25] [26
+) [27] [28
 
 
 
 
-] (_eidversicherung.tex) [27
+] (_eidversicherung.tex) [29
 
 
 
@@ -1527,26 +1640,34 @@ L3 programming layer <2024-03-14>
  ***********
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `masterthesis.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                masterthesis
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'masterthesis.run.xml'.
 \openout1 = `masterthesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 50351 strings out of 474424
- 1195545 string characters out of 5741740
- 3355849 words of memory out of 5000000
- 71814 multiletter control sequences out of 15000+600000
- 598827 words of font info for 124 fonts, out of 8000000 for 9000
+ 50475 strings out of 474424
+ 1197415 string characters out of 5741740
+ 3636612 words of memory out of 5000000
+ 71928 multiletter control sequences out of 15000+600000
+ 598736 words of font info for 128 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  108i,20n,107p,10950b,2863s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmri.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on masterthesis.pdf (31 pages, 660457 bytes).
+<C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmr.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/public/mathpazo/fplmri.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/danie/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on masterthesis.pdf (33 pages, 961179 bytes).
 PDF statistics:
- 370 PDF objects out of 1000 (max. 8388607)
- 69 named destinations out of 1000 (max. 500000)
- 234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 374 PDF objects out of 1000 (max. 8388607)
+ 75 named destinations out of 1000 (max. 500000)
+ 247 words of extra memory for PDF output out of 10000 (max. 10000000)
 

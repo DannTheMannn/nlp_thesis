@@ -1,16 +1,13 @@
 
 \chapter{Gathering of literature}
 Unfortunately, there's barely any open-source collection of literature with 
-characterizations available. Examples like "Romeo and Juliet," "Moby Dick," "Frankenstein," or "Alice's Adventures in Wonderland" are rare cases where enough fandom exists to create accessible and reviewed content. In most other instances, it seems too risky to use open-source literature, as these collections predominantly consist of less popular books with minimal fanbase and related content. Popular literature, with its larger online presence, results in more detailed and reviewed community-generated content, such as characterizations and summaries, which are valuable as reference points for my generated characterizations.\\
+characterizations available. Examples like ``Romeo and Juliet'', ``Moby Dick'', ``Frankenstein'' or ``Alice's Adventures in Wonderland'' are rare cases where enough fandom exists to create accessible and reviewed content. In most other instances, it seems too risky to use open-source literature, as these collections predominantly consist of less popular books with minimal fanbase and related content. Popular literature, with its larger online presence, results in more detailed and reviewed community-generated content, such as characterizations and summaries, which are valuable as reference points for my generated characterizations which is why I will mostly rely on non-open source literatur for this thesis.\\
 
-All of the books contained text decorations and structural elements such as chapters, sections, and page numbers, which remained present after converting the PDFs and text files and loading them into memory. These elements had to be manually filtered out before further processing, as they interfered with some of the techniques applied later.\\
+During the process of using Wikidata, a free and open knowledge database, to query characters and filter personal descriptions from books, I discovered that many of these descriptions contain references to articles from fandom.com, the world's most popular open-source wiki platform for fan-related content. Initially, I planned to query Wikidata for all characters linked to Fandom articles to gather literature with the most comprehensive fandom articles. However, I realized that not all character descriptions in Wikidata include Fandom article links. Some character descriptions are missing Fandom article URLs, making it insufficient to rely solely on Wikidata for content. Additionally, there are instances of multiple articles linked to one character. Some articles are in different languages, while others are older versions or from different universes within the same saga. In most cases, I was able to chose to use the newest, longest English version but this was not always possible. For example, when fetching Dune character fandom articles, I had to manually sort out some characters. The Dune fandom includes characters from the ``Dune Encyclopedia'' and ``Expanded Dune'', as well as from the original ``Dune'' by Frank Herbert. This overlap made it problematic to compare information about the same character in different contexts, especially when relevant information might not be available across all contexts.\\
 
-During the process of using Wikidata, a free and open knowledge database, to query characters and filter personal descriptions from books, I discovered that many of these descriptions contain references to articles from Fandom.com, the world's most popular open-source wiki platform for fan-related content.\\
+In the end, I used multiple methods. First, I queried Wikidata to quickly obtain a large number of characters, then manually deleted duplicates and added additional characters with URLs by hand. The fetched articles varied significantly in length, requiring me to cut them down so they were roughly the same size. I achieved this by sequentially removing paragraphs from the bottom of each original article until they reached the desired length.
 
-Initially, I planned to query Wikidata for all characters linked to Fandom articles to gather literature with the most comprehensive fandom articles. However, I realized that not all character descriptions in Wikidata include Fandom article links. Some character descriptions are missing Fandom article URLs, making it insufficient to rely solely on Wikidata for content. Additionally, there are instances of multiple articles linked to one character. Some articles are in different languages, while others are older versions or from different universes within the same saga. In most cases, I was able to chose to use the newest, longest English version but this was not always possible. For example, when fetching Dune character fandom articles, I had to manually sort out some characters. The Dune fandom includes characters from the "Dune Encyclopedia" and "Expanded Dune," as well as from the original "Dune" by Frank Herbert. This overlap made it problematic to compare information about the same character in different contexts, especially when relevant information might not be available across all contexts.\\
-
-
-So in the end, I used multiple methods. First, I queried Wikidata to quickly obtain a large number of characters, then manually deleted duplicates and added additional characters with URLs by hand. Since readers of this thesis might not have access to all the non-open-source literature I used, I aimed to minimize the number of sources to make the results easier to replicate and verify. Ultimately, I was able to obtain character data for 800 characters from eight books in total. The results are linked in the appendix.
+Since readers of this thesis might not have access to all the non-open-source literature I used, I aimed to minimize the number of sources to make the results easier to replicate and verify. Ultimately, I was able to obtain character data for 534 characters from eight books in total. The results are linked in the appendix. All of the books contain text decorations and structural elements such as chapters, sections, and page numbers, which remained present after converting the PDFs and text files and loading them into memory. These elements had to be manually filtered out using regular expressions before further processing.\\
 
 
 
@@ -41,11 +38,6 @@ So in the end, I used multiple methods. First, I queried Wikidata to quickly obt
   \caption{dataset of characters and their descriptions}
   \label{tab:example_table}
   \end{table}
-...\\
-
-
-Project Gutenberg and the Tell Me Again! Dataset...
-
 
 
 
